@@ -1,0 +1,17 @@
+.landingPage {
+  width: 100vw;
+  height: 100vh;
+  background-color: #026AA7;
+  padding: 1%;
+
+  h1 {
+    color: white;
+  }
+
+  .boardContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
