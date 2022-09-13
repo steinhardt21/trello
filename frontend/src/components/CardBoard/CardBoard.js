@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 
 import './CardBoard.scss'
 
-const CardBoard = ({}) => {
+const CardBoard = ({title}) => {
   return (
-    <div className={'CardBoard'}>CardBoard</div>
+    <div className={'CardBoard'}>{title}</div>
   )
+}
+
+PropTypes.CardBoard = {
+  title: PropTypes.string
 }
 
 export default CardBoard
