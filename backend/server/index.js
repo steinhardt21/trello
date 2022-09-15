@@ -15,7 +15,7 @@ app.use(
 
 app.get("/api", (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
-  res.send({message: "Hello!"});
+  res.send({message: "Hello!"}); 
 })
 
 app.get("/boards", database.getBoards);

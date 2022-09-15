@@ -3,10 +3,12 @@ import React, {useState, useEffect} from 'react'
 import './Landing.scss'
 import CardBoard from '../components/CardBoard/CardBoard'
 import CardBoardAdd from '../components/CardBoardAdd/CardBoardAdd'
+import ModalCreateBoard from '../components/ModalCreateBoard/ModalCreateBoard'
 
 const Landing = () => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [modalShow, setModalShow] = React.useState(false);
 
   const getBoards = async () => {
     try {
@@ -25,13 +27,18 @@ const Landing = () => {
 
   return (
     <div className='landingPage'>
+      <ModalCreateBoard
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       <h1>Trello clone</h1>
       <div className='boardContainer'>
         {!loading ? 
           Object.values(data).map((board, idx) => <CardBoard key={idx} title={board.name}/>) 
           : <p>{'No boards'}</p> 
         }
-        <CardBoardAdd />
+        <CardBoardAdd handleClick={setModalShow} />
+        
       </div>
     </div>
   )
