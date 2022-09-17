@@ -2,11 +2,12 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types';
 
-const ModalCreateBoard = (props) => {
+const ModalCreateBoard = ({show, onHide, boards, addBoard}) => {
   return (
     <Modal
-        {...props}
+        show={show}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -17,14 +18,10 @@ const ModalCreateBoard = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Insert title</Form.Label>
               <Form.Control type="text" placeholder="Title" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
             <Button variant="primary" type="submit">
               Create
@@ -32,10 +29,17 @@ const ModalCreateBoard = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
   )
+}
+
+PropTypes.ModalCreateBoard = {
+  onHide: PropTypes.func,
+  boards: PropTypes.object,
+  addBoard: PropTypes.func,
+  show: PropTypes.bool
 }
 
 export default ModalCreateBoard

@@ -8,7 +8,7 @@ import ModalCreateBoard from '../components/ModalCreateBoard/ModalCreateBoard'
 const Landing = () => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   const getBoards = async () => {
     try {
@@ -28,6 +28,8 @@ const Landing = () => {
   return (
     <div className='landingPage'>
       <ModalCreateBoard
+        boards={data}
+        addBoard={setData}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
