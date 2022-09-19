@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 
 import './Landing.scss'
 import CardBoard from '../components/CardBoard/CardBoard'
@@ -9,6 +10,7 @@ const Landing = () => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [modalShow, setModalShow] = useState(false);
+  const [update, setUpdate] = useState(false)
 
   const getBoards = async () => {
     try {
@@ -21,15 +23,26 @@ const Landing = () => {
     }
   }
 
+  const addBoard = async (boardTitle) => {
+    try {
+      const payload = { nameBoard: boardTitle };
+      axios.post('/addBoard', payload)
+      setUpdate(!update)
+      
+    } catch (error) {
+      console.log('****2 Error ', error)
+    }
+  }
+
   useEffect(() => {
     getBoards()
-  }, [])
+  }, [update])
 
   return (
     <div className='landingPage'>
       <ModalCreateBoard
         boards={data}
-        addBoard={setData}
+        addBoard={addBoard}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />

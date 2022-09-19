@@ -21,7 +21,7 @@ const getBoards = (request, response) => {
 const createBoard = (request, response) => {
   response.set('Access-Control-Allow-Origin', '*');
   const { nameBoard } = request.body;
-  pool.query('INSERT INTO board (name) VALUES ($1) RETURNING *', [nameBoard], (error, reuslts) => {
+  pool.query('INSERT INTO board (name) VALUES ($1) RETURNING *', [nameBoard], (error, results) => {
     if(error) {
       throw error;
     }

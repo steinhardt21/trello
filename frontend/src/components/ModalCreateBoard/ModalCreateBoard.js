@@ -1,37 +1,54 @@
-import React from 'react'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form';
-import PropTypes from 'prop-types';
+import React, {useState} from 'react'
+import PropTypes from 'prop-types'
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const ModalCreateBoard = ({show, onHide, boards, addBoard}) => {
+  const [titleNewBoard, setTitle] = useState(null)
+
+  const handleChange = (event) => {
+    setTitle(event.target.value)
+  }
+
+  const handleCreate = () => {
+    addBoard(titleNewBoard)
+    onHide()
+  }
+
   return (
-    <Modal
-        show={show}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Create new board
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Insert title</Form.Label>
-              <Form.Control type="text" placeholder="Title" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Create
-            </Button>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+    <div>
+      <Button variant="outlined">
+        Open form dialog
+      </Button>
+      <Dialog open={show} onClose={onHide}>
+        <DialogTitle>Add new board</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To subscribe to this website, please enter your email address here. We
+            will send updates occasionally.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Title of the new board"
+            type="email"
+            fullWidth
+            variant="standard"
+            onChange={handleChange}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onHide}>Cancel</Button>
+          <Button onClick={() => handleCreate()}>Subscribe</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   )
 }
 

@@ -19,7 +19,7 @@ app.get("/api", (req, res) => {
 })
 
 app.get("/boards", database.getBoards);
-app.post('/addBoard', database.createBoard);
+app.post("/addBoard", database.createBoard);
 
 app.listen(PORT, ()=> {
   console.log(`Server listening  on ${PORT}`);
