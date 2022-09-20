@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
+import ROUTES, { RenderRoutes } from "./routes"
 import './index.css';
-import Landing from './Landing/Landing';
 
 export default function App() {
   return(
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Landing />}/>
-      </Routes>
+      {RenderRoutes({routes: ROUTES}) }
     </BrowserRouter>
   )
 }

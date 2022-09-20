@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 import './Landing.scss'
 import CardBoard from '../components/CardBoard/CardBoard'
@@ -49,7 +50,9 @@ const Landing = () => {
       <h1>Trello clone</h1>
       <div className='boardContainer'>
         {!loading ? 
-          Object.values(data).map((board, idx) => <CardBoard key={idx} title={board.name}/>) 
+          Object.values(data).map((board, idx) => <Link to={`/board/${board.id}`} className='linkComponent'>
+            <CardBoard key={idx} title={board.name}/>
+          </Link>) 
           : <p>{'No boards'}</p> 
         }
         <CardBoardAdd handleClick={setModalShow} />
