@@ -50,8 +50,8 @@ const Landing = () => {
       <h1>Trello clone</h1>
       <div className='boardContainer'>
         {!loading ? 
-          Object.values(data).map((board, idx) => <Link to={`/board/${board.id}`} className='linkComponent'>
-            <CardBoard key={idx} title={board.name}/>
+          Object.values(data).map((board, idx) => <Link key={board.id} to={`/board/${board.id}`} className='linkComponent'>
+            <CardBoard title={board.name}/>
           </Link>) 
           : <p>{'No boards'}</p> 
         }

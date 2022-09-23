@@ -1,10 +1,15 @@
 .boardPage {
-  width: 100vw;
+  width: initial;
   height: 100vh;
   background-color: #026AA7;
   padding: 1%;
 
   h1 {
     color: white;
+  }
+
+  .column {
+    display: inline-flex;
+    flex-wrap: nowrap;
   }
 }
